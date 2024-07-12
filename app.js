@@ -49,15 +49,80 @@ canvas.height = 800;
 
 //drawing a person 
 
-ctx.fillRect(210 - 40, 200 - 40, 15, 100);
-ctx.fillRect(350 - 40, 200 - 40, 15, 100);
-ctx.fillRect(260 - 40, 200 - 40, 60, 200);
+// ctx.fillRect(210 - 40, 200 - 40, 15, 100);
+// ctx.fillRect(350 - 40, 200 - 40, 15, 100);
+// ctx.fillRect(260 - 40, 200 - 40, 60, 200);
 
-ctx.arc(250, 100, 50, 0, 2 * Math.PI);
-ctx.fill();
+// ctx.arc(250, 100, 50, 0, 2 * Math.PI);
+// ctx.fill();
 
-ctx.beginPath();
-ctx.fillStyle = "white";
-ctx.arc(260 + 10, 80, 8, 1 * Math.PI, 2 * Math.PI);
-ctx.arc(220 + 10, 80, 8, 1 * Math.PI, 2 * Math.PI);
-ctx.fill();
+// ctx.beginPath();
+// ctx.fillStyle = "white";
+// ctx.arc(260 + 10, 80, 8, 1 * Math.PI, 2 * Math.PI);
+// ctx.arc(220 + 10, 80, 8, 1 * Math.PI, 2 * Math.PI);
+// ctx.fill();
+
+//----------------------------------------
+
+// draw with click
+
+// ctx.lineWidth = 2;
+// ctx.moveTo(0, 0);
+
+// function onClick(event) {
+// 	ctx.lineTo(event.offsetX, event.offsetY);
+// 	ctx.stroke();
+// }
+
+// canvas.addEventListener("click", onClick)
+
+//--------------------------------------
+
+// ctx.lineWidth = 2;
+
+// const colors = [
+// 	"#ff3838",
+// 	"#ffb8b8",
+// 	"#c56cf0",
+// 	"#ff9f1a",
+// 	"#fff200",
+// 	"#32ff7e",
+// 	"#7efff5"
+// ]
+// function onClick(event) {
+// 	ctx.beginPath();
+// 	ctx.moveTo(0, 0);
+// 	const color = colors[Math.floor(Math.random() * colors.length)];
+// 	ctx.strokeStyle = color;
+// 	ctx.lineTo(event.offsetX, event.offsetY);
+// 	ctx.stroke();
+// }
+
+// canvas.addEventListener("mousemove", onClick)
+
+//-------------------------------------------
+
+ctx.lineWidth = 2;
+let isPainting = false;
+
+function onMove (event) {
+	if (isPainting) {
+		ctx.lineTo(event.offsetX, event.offsetY);
+		ctx.stroke();
+		return;
+	}
+	ctx.moveTo(event.offsetX,event.offsetY);
+}
+
+function onMouseDown() {
+	isPainting = true;
+}
+
+function cancelPainting() {
+	isPainting = false;
+}
+
+canvas.addEventListener("mousemove", onMove);
+canvas.addEventListener("mousedown", onMouseDown);
+canvas.addEventListener("mouseup", cancelPainting);
+canvas.addEventListener("mouseleave", cancelPainting);
