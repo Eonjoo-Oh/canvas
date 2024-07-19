@@ -1,7 +1,7 @@
 const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
-const eraseBtn = document.getElementById("eraser-btn");
+const eraserBtn = document.getElementById("eraser-btn");
 const restartBtn = document.getElementById("restart-btn");
 const modeBtn = document.getElementById("mode-btn")
 const colorOptions = Array.from (document.getElementsByClassName("color-option"));
@@ -183,7 +183,7 @@ function onRestartClick() {
 }
 
 function onEraserClick() {
-	ctx.strokeStyle = white;
+	ctx.strokeStyle = "white";
 	isFilling = false;
 	modeBtn.innerText = "Fill";
 }
@@ -236,6 +236,6 @@ colorOptions.forEach(color => color.addEventListener("click", onColorClick))
 
 modeBtn.addEventListener("click", onModeClick);
 restartBtn.addEventListener("click", onRestartClick);
-eraseBtn.addEventListener("click", onEraserClick);
+eraserBtn.addEventListener("click", onEraserClick);
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
