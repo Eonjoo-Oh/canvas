@@ -1,3 +1,4 @@
+const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
 const eraseBtn = document.getElementById("eraser-btn");
@@ -213,6 +214,15 @@ function onDoubleClick(event) {
 	}
 }
 
+function onSaveClick() {
+	// console.log(canvas.toDataURL());
+	const url = canvas.toDataURL();
+	const a = document.createElement("a");
+	a.href = url;
+	a.download = "myDrawing.png";
+	a.click();
+}
+
 canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
@@ -228,3 +238,4 @@ modeBtn.addEventListener("click", onModeClick);
 restartBtn.addEventListener("click", onRestartClick);
 eraseBtn.addEventListener("click", onEraserClick);
 fileInput.addEventListener("change", onFileChange);
+saveBtn.addEventListener("click", onSaveClick);
