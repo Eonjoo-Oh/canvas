@@ -1,3 +1,4 @@
+const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
 const eraseBtn = document.getElementById("eraser-btn");
 const restartBtn = document.getElementById("restart-btn");
@@ -187,9 +188,9 @@ function onEraserClick() {
 }
 
 function onFileChange(event) {
-	console.dir(event.target);
+	// console.dir(event.target);
 	const file = event.target.files[0];
-	const url = URL.createObjectURL(file);
+	// const url = URL.createObjectURL(file);
 	console.log(url);
 	const image = new Image();
 	image.src = url;
@@ -200,9 +201,19 @@ function onFileChange(event) {
 	}
 }
 
-canvas.onmousemove = function () {
-
+function onDoubleClick(event) {
+	// console.log(event.offsetX, event.offsetY);
+	const text = textInput.value;
+	if (text !== "") {
+		ctx.save();
+		ctx.lineWidth = 1;
+		ctx.font = "48px serif";
+		ctx.fillText(text, event.offsetX, event.offsetY);
+		ctx.restore();
+	}
 }
+
+canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mouseup", cancelPainting);
